@@ -9,6 +9,14 @@ namespace DeckOfCards
 
         public Deck()
         {
+            Reset();
+            Shuffle();
+        }
+
+        public Deck Reset()
+        {
+            Cards = new List<Card>();
+            
             string[] suits = 
             {
                 "Hearts",
@@ -40,7 +48,23 @@ namespace DeckOfCards
                     Cards.Add(card);
                 }
             }
+            return this;
+        }
 
+        public Deck Shuffle()
+        {
+            Random rand = new Random();
+            for (int i = 0; i < Cards.Count; i++)
+            {                
+                int randomIndex = rand.Next(Cards.Count);
+                Card temp = Cards[i];
+
+                Cards[i] = Cards[randomIndex];
+                Cards[randomIndex] = temp;
+
+            }
+
+            return this;
         }
         public void Print()
         {
@@ -52,12 +76,14 @@ namespace DeckOfCards
             }
             Console.WriteLine(PrintableDeck);
         }
-
         public Card Deal()
         {
-            Console.WriteLine($"The top card is {Cards[0]}.");
-            Cards.RemoveAt(0);
-            return Cards[0];
+            if (Cards.Count > 0){
+                Card topCard = Cards[Cards.Count-1];
+                Cards.Remove(topCard);
+                return topCard;
+            }
+            return null;
         }
     }
 }

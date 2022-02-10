@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 
 namespace DeckOfCards
 {
@@ -8,7 +8,14 @@ namespace DeckOfCards
         {
             Deck deck = new Deck();
 
-            deck.Print();
+            // deck.Print();
+            // Console.WriteLine(deck.Deal());
+
+            Player mike = new Player("Mike");
+            Console.WriteLine(mike.Draw(deck));
+            Console.WriteLine(mike.Hand.Count);
+            
+        
         }
     }
 }
